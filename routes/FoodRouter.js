@@ -15,7 +15,7 @@ const {
 router.post("/create", upload.single("image"), foodCreate);
 router.get("/get-all", foodGetAll);
 router.get("/get-ById/:id", foodGetById);
-router.patch("/update-ById/:id", foodUpdateById);
+router.patch("/update-ById/:id", upload.single("image"), foodUpdateById);
 router.delete("/delete-ById/:id", foodDeleteById);
 
 module.exports = router;

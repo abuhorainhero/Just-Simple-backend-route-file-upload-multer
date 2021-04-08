@@ -75,8 +75,11 @@ const foodUpdateById = async (req, res, next) => {
   try {
     const { id } = req.params;
     const info = req.body;
-    console.log(id);
-    const food = await food_update_by_id(id, info);
+    const file = req.file;
+    const filePath = `${req.get("host")}/${file.path}`;
+    const finalInfo = { ...info, image: filePath };
+    console.log(finalInfo);
+    const food = await food_update_by_id(id, finalInfo);
     const foodObject = JSON.parse(JSON.stringify(food));
     return res.status(200).json({
       error: false,
